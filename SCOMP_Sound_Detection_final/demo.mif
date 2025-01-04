@@ -1,0 +1,67 @@
+WIDTH=16;
+DEPTH=2048;
+
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+0000: B801; -- 	LOADI 	1
+0001: 9850; -- 	OUT 	Perph
+0002: 9000; -- 	IN 		Switches
+0003: 4000; -- 	JZERO 	Begin
+0004: 2805; -- 	JUMP 	ChSwitch
+0005: B800; -- 	LOADI 	0
+0006: 9801; -- 	OUT 	LEDs
+0007: 9804; -- 	OUT 	Hex0
+0008: 9000; -- 	IN Switches
+0009: 1034; -- 	STORE swtch
+000A: 0834; -- 	LOAD swtch
+000B: 2035; -- 	SUB one
+000C: 4014; -- 	JZERO Attend
+000D: 0834; -- 	LOAD swtch
+000E: 2036; -- 	SUB two
+000F: 401E; -- 	JZERO Time
+0010: 0834; -- 	LOAD swtch
+0011: 2037; -- 	SUB four
+0012: 402B; -- 	JZERO Meter
+0013: 2805; -- 	JUMP ChSwitch
+0014: 0835; -- 	LOAD 	one
+0015: 9850; -- 	OUT  	Perph
+0016: 9050; -- 	IN 		Perph
+0017: 6011; -- 	SHIFT 	-1
+0018: 9804; -- 	OUT 	Hex0
+0019: 9000; -- 	IN		switches
+001A: 2034; -- 	Sub 	swtch
+001B: 3805; -- 	JPOS 	ChSwitch
+001C: 3005; -- 	JNEG	ChSwitch
+001D: 4014; -- 	JZERO 	Attend
+001E: 9000; -- 	IN		switches
+001F: 2034; -- 	Sub 	swtch
+0020: 3805; -- 	JPOS 	ChSwitch
+0021: 3005; -- 	JNEG	ChSwitch
+0022: B803; -- 	LOADI	3
+0023: 9850; -- 	OUT   	Perph
+0024: 9050; -- 	IN    	Perph
+0025: 9804; -- 	OUT   	Hex0
+0026: 9802; -- 	OUT   	Timer
+0027: 9002; -- 	IN    	Timer
+0028: 6FF3; -- 	ADDI  	-13
+0029: 3027; -- 	JNEG  	WaitingLoop
+002A: 281E; -- 	JUMP  	Time
+002B: 9000; -- 	IN 		Switches
+002C: 2034; -- 	Sub		swtch
+002D: 3805; -- 	JPOS	ChSwitch
+002E: 3005; -- 	JNEG	ChSwitch
+002F: B802; -- 	LOADI 	2
+0030: 9050; -- 	IN     	Perph
+0031: 9850; -- 	OUT 	Perph
+0032: 9804; -- 	OUT    	Hex0
+0033: 282B; -- 	JUMP  	Meter
+0034: 0000; -- swtch: 		DW 0
+0035: 0001; -- one:		DW 1
+0036: 0002; -- two:		DW 2
+0037: 0004; -- four: 		DW 4 
+0038: 0000; -- Count: 		DW 0
+[0039..07FF] : 0000; -- [empty memory]
+END;
+

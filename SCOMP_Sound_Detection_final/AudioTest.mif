@@ -1,0 +1,22 @@
+WIDTH=16;
+DEPTH=2048;
+
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+0000: 4800; --   AND 0
+0001: 9850; --   OUT   Sound
+0002: 4800; --   AND   0
+0003: 6803; --   ADDI  3
+0004: 9850; --   OUT   Sound
+0005: 9050; --   IN    Sound
+0006: 9804; --   OUT   Hex0
+0007: 9802; --   OUT   Timer
+0008: 9002; --   IN    Timer
+0009: 6FF3; --   ADDI  -13
+000A: 3008; --   JNEG  WaitingLoop
+000B: 2802; --   JUMP  Game	
+000C: 0000; -- count: DW 0
+[000D..07FF] : 0000; -- [empty memory]
+END;
